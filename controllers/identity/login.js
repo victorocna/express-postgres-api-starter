@@ -2,7 +2,7 @@ require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { error } = require('../../functions');
-const { Identity } = require('../../models');
+const { knex } = require('../../db');
 
 module.exports = async (req, res) => {
   const { email, password } = req.body;
@@ -10,12 +10,12 @@ module.exports = async (req, res) => {
     throw error(400, 'Missing required params');
   }
 
-  const identity = await Identity.findOne({ email }).select('+password');
+  const identity = await knex('identities').first('*').where('email', '=', email);
   if (!identity) {
     throw error(400, 'Your email or password are invalid');
   }
 
-  const { id, key, active, confirmed, __t: role, password: passwordFromDb } = identity;
+  const { id, name, active, confirmed, role, password: passwordFromDb } = identity;
   if (!active || !confirmed) {
     throw error(400, 'Your account is not active, yet');
   }
@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
   }
 
   // the JWT public data payload
-  const payload = { id, key, email, role };
+  const payload = { id, name, email, role };
 
   const token = jwt.sign(payload, process.env.JWT_SECRET, {
     expiresIn: '15m',

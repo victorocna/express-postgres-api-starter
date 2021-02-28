@@ -1,13 +1,16 @@
 const { error } = require('../../functions');
-const { Identity } = require('../../models');
+const { knex } = require('../../db');
 
 module.exports = async (req, res) => {
-  const { id, secret } = req.user;
-  if (!id || !secret) {
+  const { id } = req.user;
+  if (!id) {
     throw error(404, 'Missing required params');
   }
 
-  const profile = await Identity.findOne({ _id: id, key: secret }).lean();
+  const select = ['id', 'email', 'name'];
+  const profile = await knex('identities')
+    .first(...select)
+    .where('id', '=', id);
   if (!profile) {
     throw error(404, 'Profile not found');
   }

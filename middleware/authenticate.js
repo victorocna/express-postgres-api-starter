@@ -23,8 +23,8 @@ module.exports = (req, res, next) => {
       });
     }
 
-    const { key, email } = decoded;
-    if (!key || !email) {
+    const { id, email } = decoded;
+    if (!id || !email) {
       return res.status(401).json({
         name: 'Error',
         message: 'Unauthorized Malformed JWT',
@@ -33,7 +33,6 @@ module.exports = (req, res, next) => {
 
     // Make the decoded JWT payload available on the request object
     req.user = decoded;
-    req.user.secret = key; // useful alias
 
     next();
   });

@@ -1,5 +1,6 @@
+const { hashSync } = require('bcryptjs');
+const { knex } = require('../../db');
 const { error } = require('../../functions');
-const { Identity, Reset } = require('../../models');
 
 module.exports = async (req, res) => {
   const { hash } = req.params;
@@ -8,20 +9,21 @@ module.exports = async (req, res) => {
     throw error(400, 'Missing required params to reset your password');
   }
 
-  const reset = await Reset.findOne({ hash }).select('identity');
+  const reset = await knex('hashes').first('*').where('hash', '=', hash);
   if (!reset) {
     throw error(404, 'Your reset token is invalid');
   }
 
   const { identity: id } = reset;
-  const identity = await Identity.findById(id);
+  const identity = await knex('identities').first('*').where('id', '=', id);
   if (!identity) {
     throw error(404, 'Account not found');
   }
 
-  identity.password = password;
-  await identity.save(); // validates and throws if anything is wrong
-  await Reset.deleteMany({ hash });
+  await knex('identities')
+    .update({ password: hashSync(password) })
+    .where('id', '=', id);
+  await knex('hashes').del().where('hash', '=', hash);
 
   return res.status(200).json({ success: true });
 };

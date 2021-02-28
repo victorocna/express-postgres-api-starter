@@ -1,5 +1,5 @@
+const { knex } = require('../../db');
 const { error } = require('../../functions');
-const { Confirm, Identity } = require('../../models');
 
 module.exports = async (req, res) => {
   const { hash } = req.params;
@@ -7,21 +7,19 @@ module.exports = async (req, res) => {
     throw error(400, 'Missing required params');
   }
 
-  const confirm = await Confirm.findOne({ hash }).select('identity');
+  const confirm = await knex('hashes').first('*').where('hash', '=', hash);
   if (!confirm) {
     throw error(404, 'Invalid confirmation code');
   }
 
   const { identity: id } = confirm;
-  const identity = await Identity.findById(id);
+  const identity = await knex('identities').first('*').where('id', '=', id);
   if (!identity) {
     throw error(404, 'Account not found');
   }
 
-  identity.confirmed = true;
-  identity.confirmedAt = Date.now();
-  await identity.save(); // validates and throws if anything is wrong
-  await Confirm.deleteMany({ hash });
+  await knex('identities').update({ confirmed: true }).where('id', '=', id);
+  await knex('hashes').del().where('hash', '=', hash);
 
   return res.status(200).json({ success: true });
 };
