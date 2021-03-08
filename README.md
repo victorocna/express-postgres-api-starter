@@ -16,6 +16,13 @@ Copy the example environment variables
 cp .env.example .env
 ```
 
+Run migrations and seeds
+
+```bash
+npx knex migrate:latest
+npx knex seed:run
+```
+
 Start the local server
 
 ```bash
