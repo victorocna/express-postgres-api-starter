@@ -13,6 +13,7 @@ router.use(slow);
  * @see https://expressjs.com/en/api.html#app.use
  */
 router.use(require('./routes/identity'));
+router.use(require('./routes/todo'));
 
 /**
  * Matches any other HTTP method and route not matched before
