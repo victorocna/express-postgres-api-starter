@@ -3,9 +3,10 @@ exports.up = async function (knex) {
 
   await knex.schema.createTable('hashes', (table) => {
     table.uuid('id').notNullable().primary().defaultTo(knex.raw('uuid_generate_v4()'));
-    table.string('hash').notNullable();
     table.uuid('identity').notNullable();
+    table.string('hash').notNullable();
     table.timestamp('created_at').notNullable().defaultTo(knex.fn.now());
+    table.timestamp('updated_at');
   });
 };
 
