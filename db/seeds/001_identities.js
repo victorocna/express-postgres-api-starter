@@ -2,11 +2,10 @@ const { identities } = require('../resources');
 
 exports.seed = async (knex) => {
   try {
-    // first, delete ALL existing entries
-    await knex('identities').truncate();
-
-    await knex('identities').insert(identities);
+    const seeds = await identities();
+    await knex('identities').insert(seeds);
   } catch (err) {
+    console.warn('Error! Cannot insert identities');
     return console.error(err);
   }
 };
