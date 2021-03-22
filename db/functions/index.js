@@ -1,5 +1,5 @@
-const getIdentityByName = require('./get-identity-by-name');
+const getIdentityByEmail = require('./get-identity-by-email');
 
 module.exports = {
-  getIdentityByName,
+  getIdentityByEmail,
 };
