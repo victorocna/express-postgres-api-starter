@@ -2,8 +2,8 @@ const { error } = require('../../functions');
 
 module.exports = async (req, res) => {
   const { id } = req.params;
-  const { secret } = req.user;
-  if (!id || !secret) {
+  const { identity, key } = req.user;
+  if (!id || !identity || !key) {
     throw error(404, 'Missing required params');
   }
 
