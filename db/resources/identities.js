@@ -7,7 +7,7 @@ module.exports = () => {
     {
       email: 'michael@email.com',
       name: 'Michael Scott',
-      role: 'admin',
+      role: 'client',
       password: shhhh,
       active: true,
       confirmed: true,

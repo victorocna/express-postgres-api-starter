@@ -2,8 +2,8 @@ const { knex } = require('../../db');
 const { error } = require('../../functions');
 
 module.exports = async (req, res) => {
-  const { identity, key } = req.user;
-  if (!identity || !key) {
+  const { identity } = req.user;
+  if (!identity) {
     throw error(404, 'Missing required params');
   }
 
