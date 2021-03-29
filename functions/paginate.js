@@ -30,13 +30,13 @@ module.exports.attachPaginate = function attachPaginate() {
     return this.client.transaction(async (trx) => {
       const pages = await this.transacting(trx).orderBy(order, direction);
       const countResult = await countQuery.transacting(trx);
-      const total = +(countResult.TOTAL || countResult.total);
+      const total = countResult.TOTAL || countResult.total;
       const hasNext = total > pages.length + offset;
 
       // Add pagination data to the page params
       const pageParams = {
         count: +total,
-        hasNext: !!hasNext,
+        hasNext,
         page: +currentPage,
         perPage: +perPage,
       };
