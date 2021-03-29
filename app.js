@@ -7,6 +7,9 @@ const cors = require('cors');
 const indexRouter = require('./router');
 const app = express();
 
+const { attachPaginate } = require('./functions/paginate');
+attachPaginate();
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(helmet());
