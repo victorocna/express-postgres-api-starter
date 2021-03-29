@@ -1,7 +1,5 @@
 const { knex } = require('../../db');
 const { error } = require('../../functions');
-const { attachPaginate } = require('../../functions/paginate');
-attachPaginate();
 
 module.exports = async (req, res) => {
   const { identity } = req.user;
@@ -31,7 +29,7 @@ module.exports = async (req, res) => {
     .select(...select)
     .where('todos.identity', identity)
     .modify(onlyFilter)
-    .paginate({ query: req.query });
+    .paginate(req.query);
 
   return res.status(200).json(todos);
 };

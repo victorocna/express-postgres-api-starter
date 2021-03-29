@@ -1,8 +1,9 @@
 const Knex = require('knex');
 
 module.exports.attachPaginate = function attachPaginate() {
-  function paginate({ query, isFromStart = false }) {
-    let { limit: perPage = 30, page: currentPage = 1 } = query;
+  function paginate(query) {
+    let { per_page: perPage = 30, page: currentPage = 1 } = query;
+
     if (isNaN(perPage)) {
       throw new Error('Paginate error: perPage must be a number.');
     }
@@ -11,16 +12,11 @@ module.exports.attachPaginate = function attachPaginate() {
       throw new Error('Paginate error: currentPage must be a number.');
     }
 
-    if (typeof isFromStart !== 'boolean') {
-      throw new Error('Paginate error: isFromStart must be a boolean.');
-    }
-
     if (currentPage < 1) {
       currentPage = 1;
     }
 
-    const offset = isFromStart ? 0 : (currentPage - 1) * perPage;
-    const limit = isFromStart ? perPage * currentPage : perPage;
+    const offset = (currentPage - 1) * perPage;
 
     const countQuery = new this.constructor(this.client)
       .count('* as total')
@@ -29,7 +25,7 @@ module.exports.attachPaginate = function attachPaginate() {
       .debug(this._debug);
 
     // This will paginate the data itself
-    this.offset(offset).limit(limit);
+    this.offset(offset).limit(perPage);
 
     return this.client.transaction(async (trx) => {
       const pages = await this.transacting(trx);
