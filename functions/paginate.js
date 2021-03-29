@@ -1,7 +1,12 @@
 const Knex = require('knex');
 
 module.exports.attachPaginate = function attachPaginate() {
-  function paginate({ per_page: perPage = 30, page: currentPage = 1 }) {
+  function paginate({
+    per_page: perPage = 30,
+    page: currentPage = 1,
+    order = 'created_at',
+    direction = 'desc',
+  }) {
     if (isNaN(perPage)) {
       throw new Error('Paginate error: perPage must be a number.');
     }
@@ -23,7 +28,7 @@ module.exports.attachPaginate = function attachPaginate() {
     this.offset(offset).limit(perPage);
 
     return this.client.transaction(async (trx) => {
-      const pages = await this.transacting(trx);
+      const pages = await this.transacting(trx).orderBy(order, direction);
       const countResult = await countQuery.transacting(trx);
       const total = +(countResult.TOTAL || countResult.total);
       const hasNext = total > pages.length + offset;
