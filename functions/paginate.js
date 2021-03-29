@@ -1,7 +1,7 @@
 const Knex = require('knex');
 
 module.exports.attachPaginate = function attachPaginate() {
-  function paginate({ query, isFromStart = false, isLengthAware = false }) {
+  function paginate({ query, isFromStart = false }) {
     let { limit: perPage = 30, page: currentPage = 1 } = query;
     if (isNaN(perPage)) {
       throw new Error('Paginate error: perPage must be a number.');
@@ -15,14 +15,6 @@ module.exports.attachPaginate = function attachPaginate() {
       throw new Error('Paginate error: isFromStart must be a boolean.');
     }
 
-    if (typeof isLengthAware !== 'boolean') {
-      throw new Error('Paginate error: isLengthAware must be a boolean.');
-    }
-
-    // const shouldFetchTotals = isLengthAware || currentPage === 1 || isFromStart;
-    let pagination = {};
-    let countQuery = null;
-
     if (currentPage < 1) {
       currentPage = 1;
     }
@@ -30,37 +22,30 @@ module.exports.attachPaginate = function attachPaginate() {
     const offset = isFromStart ? 0 : (currentPage - 1) * perPage;
     const limit = isFromStart ? perPage * currentPage : perPage;
 
-    // if (shouldFetchTotals) {
-    countQuery = new this.constructor(this.client)
+    const countQuery = new this.constructor(this.client)
       .count('* as total')
       .from(this.clone().offset(0).clearOrder().as('count__query__'))
       .first()
       .debug(this._debug);
-    // }
 
     // This will paginate the data itself
     this.offset(offset).limit(limit);
 
     return this.client.transaction(async (trx) => {
-      const result = await this.transacting(trx);
-      //   if (shouldFetchTotals) {
+      const pages = await this.transacting(trx);
       const countResult = await countQuery.transacting(trx);
       const total = +(countResult.TOTAL || countResult.total);
-      const hasNext = total > result.length + offset;
-      pagination = {
-        count: total,
-        hasNext,
-      };
-      //   }
+      const hasNext = total > pages.length + offset;
 
-      // Add pagination data to paginator object
-      pagination = {
-        ...pagination,
+      // Add pagination data to the page params
+      const pageParams = {
+        count: +total,
+        hasNext: !!hasNext,
         page: +currentPage,
-        perPage,
+        perPage: +perPage,
       };
 
-      return { data: result, pagination };
+      return { pageParams, pages };
     });
   }
 

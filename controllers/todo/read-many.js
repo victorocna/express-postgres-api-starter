@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
     .select(...select)
     .where('todos.identity', identity)
     .modify(onlyFilter)
-    .paginate(req.query);
+    .paginate({ query: req.query });
 
-  return res.status(200).json({ pageParams: todos.pagination, pages: todos.data });
+  return res.status(200).json(todos);
 };
