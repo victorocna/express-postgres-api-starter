@@ -23,8 +23,8 @@ module.exports = (req, res, next) => {
       });
     }
 
-    const { identity, email } = decoded;
-    if (!identity || !email) {
+    const { me, email } = decoded;
+    if (!me || !email) {
       return res.status(401).json({
         name: 'Error',
         message: 'Unauthorized Malformed JWT',

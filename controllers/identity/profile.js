@@ -2,15 +2,15 @@ const { error } = require('../../functions');
 const { knex } = require('../../db');
 
 module.exports = async (req, res) => {
-  const { id } = req.user;
-  if (!id) {
+  const { me } = req.user;
+  if (!me) {
     throw error(404, 'Missing required params');
   }
 
   const select = ['id', 'email', 'name'];
   const profile = await knex('identities')
     .first(...select)
-    .where('id', '=', id);
+    .where('id', '=', me);
   if (!profile) {
     throw error(404, 'Profile not found');
   }

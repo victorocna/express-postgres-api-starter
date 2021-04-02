@@ -3,13 +3,13 @@ const { error } = require('../../functions');
 const { todoSchema } = require('../../schemas');
 
 module.exports = async (req, res) => {
-  const { identity } = req.user;
-  if (!identity) {
+  const { me } = req.user;
+  if (!me) {
     throw error(404, 'Missing required params');
   }
 
   const { name, done } = req.body;
-  const payload = { name, done, identity };
+  const payload = { name, done, identity: me };
   await todoSchema.validate(payload).catch(() => {
     throw error(400, 'Invalid data');
   });

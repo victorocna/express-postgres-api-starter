@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
   }
 
   // the JWT public data payload
-  const payload = { name, email, role, identity: id };
+  const payload = { name, email, role, me: id };
 
   const token = jwt.sign(payload, process.env.JWT_SECRET, {
     expiresIn: '15m',

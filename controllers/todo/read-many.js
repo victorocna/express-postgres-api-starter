@@ -2,8 +2,8 @@ const { knex } = require('../../db');
 const { error } = require('../../functions');
 
 module.exports = async (req, res) => {
-  const { identity } = req.user;
-  if (!identity) {
+  const { me } = req.user;
+  if (!me) {
     throw error(404, 'Missing required params');
   }
 
@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
   const todos = await knex('todos')
     .join('identities', 'identities.id', '=', 'todos.identity')
     .select(...select)
-    .where('todos.identity', identity)
+    .where('todos.identity', me)
     .modify(onlyFilter)
     .paginate(req.query);
 
