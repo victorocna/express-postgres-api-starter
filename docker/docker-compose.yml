@@ -1,18 +1,21 @@
 version: '3.7'
+
+networks:
+  chesscoders:
+    driver: bridge
+
 services:
   postgres:
+    networks:
+      - chesscoders
     build: .
     image: postgres:10.5
     restart: always
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=tutorial
-    logging:
-      options:
-        max-size: 10m
-        max-file: '3'
+      - POSTGRES_DB=postgres
     ports:
-      - '5438:5432'
+      - 5438:5432
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
