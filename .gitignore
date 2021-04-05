@@ -2,7 +2,8 @@
 migrate.json
 NOTES.txt
 .env.production
-
+yarn.lock
+postgres-data
 # Logs
 logs
 *.log
