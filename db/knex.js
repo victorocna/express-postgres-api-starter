@@ -1,4 +1,3 @@
-require('dotenv').config();
 const knexfile = require('../knexfile');
 
 const environment = process.env.ENVIRONMENT || 'development';
