@@ -1,5 +1,5 @@
-const { knex } = require('../../db');
-const { error } = require('../../functions');
+const { knex } = require('../../../db');
+const { error } = require('../../../functions');
 
 module.exports = async (req, res) => {
   const { me } = req.user;

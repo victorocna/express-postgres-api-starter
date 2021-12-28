@@ -1,5 +1,5 @@
-const todoSchema = require('./todo-schema');
+const identitySchema = require('./identity-schema');
 
 module.exports = {
-  todoSchema,
+  identitySchema,
 };

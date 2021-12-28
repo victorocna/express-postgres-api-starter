@@ -1,4 +1,4 @@
-const { error } = require('../../functions');
+const { error } = require('../../../functions');
 
 module.exports = async (req, res) => {
   const { id } = req.params;
