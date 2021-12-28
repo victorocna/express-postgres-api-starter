@@ -1,13 +1,14 @@
 # Express Postgres API starter
 
-Starter for Node Express API projects with Postgres database
+Starter for Node Express API projects with Postgres database packed with features like
+pagination, powerful middlewares and many more.
 
 ## Quick start
 
 Install dependencies
 
 ```bash
-npm install
+npm ci
 ```
 
 Copy the example environment variables
@@ -16,7 +17,7 @@ Copy the example environment variables
 cp .env.example .env
 ```
 
-Run migrations and seeds
+Optional: Run migrations and seeds
 
 ```bash
 npx knex migrate:latest
