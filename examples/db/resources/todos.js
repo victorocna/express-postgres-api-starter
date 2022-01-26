@@ -1,32 +1,32 @@
-const { getIdentityByEmail } = require('../functions');
+const knex = require('../../../db/knex');
 
 module.exports = async () => {
-  const michael = await getIdentityByEmail('michael@email.com');
-  const jim = await getIdentityByEmail('jim@email.com');
+  const michael = await knex('identities').first('id').where('email', 'michael@email.com');
+  const jim = await knex('identities').first('id').where('email', 'jim@email.com');
 
   return [
     {
-      identity: michael,
+      identity: michael.id,
       name: 'Make a todo list',
       done: true,
     },
     {
-      identity: michael,
+      identity: michael.id,
       name: 'Add integration tests',
       done: false,
     },
     {
-      identity: michael,
+      identity: michael.id,
       name: 'Complete starter project',
       done: false,
     },
     {
-      identity: jim,
+      identity: jim.id,
       name: 'Make fun of Dwight',
       done: false,
     },
     {
-      identity: jim,
+      identity: jim.id,
       name: 'Go home at 5PM sharp',
       done: true,
     },
