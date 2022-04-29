@@ -4,8 +4,8 @@
   "description": "Starter for Node Express API projects with Postgres database",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon ./bin/www",
-    "start": "node ./bin/www",
+    "dev": "nodemon ./server",
+    "start": "node ./server",
     "seed": "knex seed:run",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
