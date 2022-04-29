@@ -19,5 +19,5 @@ module.exports = async (req, res) => {
     throw error(404, 'Resource not found');
   }
 
-  return res.status(200).json(todo);
+  return res.status(200).json({ data: todo, message: 'Todo created' });
 };

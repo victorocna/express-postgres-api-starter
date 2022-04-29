@@ -1,3 +1,4 @@
+const { knex } = require('../../../db');
 const { error } = require('../../../functions');
 
 module.exports = async (req, res) => {
@@ -7,5 +8,10 @@ module.exports = async (req, res) => {
     throw error(404, 'Missing required params');
   }
 
-  return res.status(204).json({ message: 'Coming soon' });
+  const todo = await knex('todo').first().where({ id, identity_id: me });
+  if (!todo) {
+    throw error(404, 'Resource not found');
+  }
+
+  return res.status(204).json(todo);
 };
