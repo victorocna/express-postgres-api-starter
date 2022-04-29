@@ -2,8 +2,7 @@ require('express-async-errors');
 const express = require('express');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
-const cors = require('cors');
-const origin = require('./cors/origin');
+const setupCors = require('./cors/setup-cors');
 const router = require('./router');
 const app = express();
 
@@ -16,7 +15,7 @@ app.use(helmet());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
 // custom cors config
-app.use(cors({ origin, credentials: true }));
+app.use(setupCors());
 
 // route everything
 app.use('/', router);
