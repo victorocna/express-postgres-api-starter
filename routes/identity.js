@@ -9,6 +9,7 @@ router.post('/confirm/:hash', recaptcha, Identity.confirm);
 router.post('/forgot', recaptcha, Identity.forgot);
 router.post('/login', recaptcha, Identity.login);
 router.post('/reset/:hash', recaptcha, Identity.reset);
+router.post('/change-password', authenticate, Identity.changePassword);
 
 router.post('/logout', Identity.logout);
 router.post('/refresh-token', Identity.refreshToken);
