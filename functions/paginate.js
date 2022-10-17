@@ -8,10 +8,10 @@ module.exports.attachPaginate = function attachPaginate() {
     direction = 'desc',
   }) {
     if (isNaN(perPage)) {
-      throw new Error('Paginate error: perPage must be a number.');
+      throw new Error('Paginate error: perPage must be a number');
     }
     if (isNaN(currentPage)) {
-      throw new Error('Paginate error: currentPage must be a number.');
+      throw new Error('Paginate error: currentPage must be a number');
     }
     if (currentPage < 1) {
       currentPage = 1;
@@ -35,10 +35,10 @@ module.exports.attachPaginate = function attachPaginate() {
 
       // Add pagination data to the page params
       const pageParams = {
-        count: +total,
-        hasNext,
-        page: +currentPage,
-        perPage: +perPage,
+        count: Number(total),
+        hasNext: Boolean(hasNext),
+        page: Number(currentPage),
+        perPage: Number(perPage),
       };
 
       return { pageParams, pages };
