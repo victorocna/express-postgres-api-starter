@@ -5,7 +5,7 @@ module.exports = () => {
     {
       email: 'michael@email.com',
       name: 'Michael Scott',
-      role: 'client',
+      role: 'admin',
       password: hashSync('supersecretpassword'),
       active: true,
       confirmed: true,
