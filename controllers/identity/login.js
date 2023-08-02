@@ -14,8 +14,8 @@ module.exports = async (req, res) => {
     throw error(400, 'Your email or password are invalid');
   }
 
-  // Block logins for accounts with too many retries
-  if (identity?.retries >= 5) {
+  // Block logins for accounts with too many login attempts
+  if (identity?.loginAttempts >= 5) {
     await identity.updateOne({ active: false });
     throw error(400, 'Your account has been locked for security reasons');
   }

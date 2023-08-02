@@ -7,7 +7,7 @@ exports.up = async function (knex) {
     table.string('name').notNullable();
     table.enum('role', ['admin', 'client']);
     table.string('password').notNullable();
-    table.int('retries').defaultTo(0);
+    table.int('loginAttempts').defaultTo(0);
     table.bool('active').defaultTo(false);
     table.bool('confirmed').defaultTo(false);
     table.timestamp('created_at').notNullable().defaultTo(knex.fn.now());
