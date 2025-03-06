@@ -2,7 +2,8 @@ const jwt = require('jsonwebtoken');
 const { error, removeRefreshTokenCookie } = require('../../functions');
 
 module.exports = async (req, res) => {
-  if (!req.signedCookies.jwt_refresh_token) {
+  const signedCookie = req.signedCookies[process.env.JWT_TOKEN_NAME];
+  if (!signedCookie) {
     throw error(401, 'Refresh token not provided');
   }
 
@@ -32,13 +33,14 @@ module.exports = async (req, res) => {
 
   // set refresk token as cookie
   const oneDay = 24 * 3600 * 1000;
-  res.cookie('jwt_refresh_token', refreshToken, {
-    domain: process.env.COOKIE_DOMAIN,
-    secure: true,
-    maxAge: oneDay,
-    signed: true,
+  const isProduction = process.env.NODE_ENV === 'production';
+
+  res.cookie(process.env.JWT_TOKEN_NAME, refreshToken, {
     httpOnly: true,
-    sameSite: 'lax',
+    maxAge: oneDay,
+    secure: isProduction,
+    signed: true,
+    sameSite: 'Lax',
   });
 
   return res.json({ token, message: 'Token refresh successful' });

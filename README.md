@@ -38,10 +38,6 @@ Important features are listed below
 
 JSON web tokens (JWT) and HTTP-only cookies are used to facilitate authentication.
 
-Important note for `COOKIE_DOMAIN` environment variable:
-
-> Multiple host/domain values are not allowed, but if a domain is specified, then subdomains are always included.
-
 ### Logger
 
 You can use the logger from `pino.js` file to log anything with different logging levels.
