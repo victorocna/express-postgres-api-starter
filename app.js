@@ -1,14 +1,15 @@
-require('express-async-errors');
-const express = require('express');
-const helmet = require('helmet');
-const cookieParser = require('cookie-parser');
-const setupCors = require('./cors/setup-cors');
-const fileUpload = require('express-fileupload');
-const { speedLimiter } = require('./middleware');
-const router = require('./router');
+import cookieParser from 'cookie-parser';
+import express from 'express';
+import 'express-async-errors';
+import fileUpload from 'express-fileupload';
+import helmet from 'helmet';
+import setupCors from './cors/setup-cors';
+import { attachPaginate } from './functions';
+import { speedLimiter } from './middleware';
+import router from './router';
+
 const app = express();
 
-const { attachPaginate } = require('./functions/paginate');
 attachPaginate();
 
 app.use(express.json());
@@ -26,4 +27,4 @@ app.use(speedLimiter);
 // route everything
 app.use(router);
 
-module.exports = app;
+export default app;

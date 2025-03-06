@@ -1,9 +1,9 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const { error } = require('../../functions');
-const { knex } = require('../../db');
+import { knex } from '@db';
+import { error } from '@functions';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
     throw error(400, 'Missing required params');

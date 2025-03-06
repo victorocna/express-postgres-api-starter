@@ -1,14 +1,16 @@
-const whitelist = require('./whitelist');
-
-const inWhitelist = (origin) => {
-  for (const domain of whitelist) {
-    // match URL starting with protocol
-    if (origin.indexOf(domain) === 0) {
-      return true;
+const inWhitelist = (origin, whitelist) => {
+  try {
+    for (const domain of whitelist) {
+      // Match URL starting with protocol
+      if (origin.indexOf(domain) === 0) {
+        return true;
+      }
     }
-  }
 
-  return false;
+    return false;
+  } catch {
+    return false;
+  }
 };
 
 module.exports = inWhitelist;

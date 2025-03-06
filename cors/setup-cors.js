@@ -1,14 +1,11 @@
 const cors = require('cors');
-const origin = require('./origin');
+const setupOrigin = require('./setup-origin');
 
-const setupCors = () => {
+const setupCors = (whitelist, exposedHeaders = []) => {
   return cors({
-    origin,
+    origin: (origin, callback) => setupOrigin({ origin, whitelist, callback }),
     credentials: true,
-    exposedHeaders: [
-      'Content-Disposition',
-      // add exposed headers here
-    ],
+    exposedHeaders: ['Content-Disposition', ...exposedHeaders],
   });
 };
 

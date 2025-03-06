@@ -1,7 +1,7 @@
-const { knex } = require('../../db');
-const { error } = require('../../functions');
+import { knex } from '@db';
+import { error } from '@functions';
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   const { hash } = req.params;
   if (!hash) {
     throw error(400, 'Missing required params');

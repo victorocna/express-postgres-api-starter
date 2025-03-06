@@ -1,5 +1,3 @@
-const inWhitelist = require('./in-whitelist');
-
 const origin = (origin, callback) => {
   // allow requests with no origin or from dev environment
   const isDev = process.env.NODE_ENV !== 'production';
@@ -21,4 +19,4 @@ const origin = (origin, callback) => {
   callback(new Error('Not allowed by CORS'));
 };
 
-module.exports = origin;
+export default origin;

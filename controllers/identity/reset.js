@@ -1,6 +1,6 @@
-const { hashSync } = require('bcryptjs');
-const { knex } = require('../../db');
-const { error } = require('../../functions');
+import { knex } from '@db';
+import { error } from '@functions';
+import { hashSync } from 'bcryptjs';
 
 module.exports = async (req, res) => {
   const { hash } = req.params;

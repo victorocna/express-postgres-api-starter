@@ -2,7 +2,7 @@
  * Middleware for authorization
  * @see https://gist.github.com/joshnuss/37ebaf958fe65a18d4ff
  */
-module.exports = (...allowed) => {
+const authorize = (...allowed) => {
   const isAllowed = (role) => {
     return allowed.includes(role);
   };
@@ -19,3 +19,5 @@ module.exports = (...allowed) => {
     });
   };
 };
+
+export default authorize;
