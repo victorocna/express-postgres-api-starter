@@ -18,11 +18,11 @@
   "author": "victorocna <victor@chesscoders.com> (https://chesscoders.com)",
   "license": "MIT",
   "engines": {
-    "npm": ">= 7",
-    "node": ">= 15"
+    "node": "^22.11.0 || ^20",
+    "npm": "^10.9.0 || ^10"
   },
   "dependencies": {
-    "axios": "^0.27.2",
+    "axios": "^1.8.1",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
