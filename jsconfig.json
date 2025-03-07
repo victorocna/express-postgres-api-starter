@@ -15,7 +15,7 @@
       "@routes": ["./routes/index.js"],
       "@routes/*": ["./routes/*"],
       "@schemas": ["./schemas/index.js"],
-      "@schemas/*": ["./schemas/*"],
+      "@schemas/*": ["./schemas/*"]
     }
   }
 }

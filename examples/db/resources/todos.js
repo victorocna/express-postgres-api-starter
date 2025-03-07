@@ -1,8 +1,8 @@
-const knex = require('../../../db/knex');
+import db from '../../../db/knex.js';
 
-module.exports = async () => {
-  const michael = await knex('identities').first('id').where('email', 'michael@email.com');
-  const jim = await knex('identities').first('id').where('email', 'jim@email.com');
+export default async () => {
+  const michael = await db('identities').first('id').where('email', 'michael@email.com');
+  const jim = await db('identities').first('id').where('email', 'jim@email.com');
 
   return [
     {

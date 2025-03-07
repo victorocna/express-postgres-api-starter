@@ -1,7 +1,5 @@
-module.exports = {
-  errorHandler: {
-    ignoredErrors: [
-      // Add more errors to ignore
-    ],
-  },
+export const errorHandler = {
+  ignoredErrors: [
+    // Add more errors to ignore
+  ],
 };

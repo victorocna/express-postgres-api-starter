@@ -1,4 +1,4 @@
-exports.up = async function (knex) {
+export async function up(knex) {
   await knex.schema.raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
 
   await knex.schema.createTable('hashes', (table) => {
@@ -8,8 +8,8 @@ exports.up = async function (knex) {
     table.timestamp('created_at').notNullable().defaultTo(knex.fn.now());
     table.timestamp('updated_at');
   });
-};
+}
 
-exports.down = async function down(knex) {
+export async function down(knex) {
   await knex.schema.dropTable('hashes');
-};
+}

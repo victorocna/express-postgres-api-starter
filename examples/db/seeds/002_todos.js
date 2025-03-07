@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
-const todos = require('../../db/resources/todos');
 
-exports.seed = async (knex) => {
+import todos from '../resources/todos.js';
+
+export async function seed(knex) {
   try {
     console.log('Planting seeds for todos');
 
@@ -13,4 +14,4 @@ exports.seed = async (knex) => {
     console.warn('Error! Cannot insert todos');
     return console.error(err);
   }
-};
+}
