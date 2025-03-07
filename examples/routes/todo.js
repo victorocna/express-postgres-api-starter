@@ -1,8 +1,8 @@
-const { Router } = require('express');
-const { Todo } = require('../../controllers');
+import { Todo } from '@examples/controllers';
+import { Router } from 'express';
 
 const router = Router();
-module.exports = router;
+export default router;
 
 router.get('/admin/todos', Todo.readMany);
 router.get('/admin/todos/:id', Todo.readOne);

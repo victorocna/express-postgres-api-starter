@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-const todos = require('../../../db/resources/todos');
+const todos = require('../../db/resources/todos');
 
 exports.seed = async (knex) => {
   try {

@@ -18,6 +18,7 @@
           "@postman": "./postman",
           "@routes": "./routes",
           "@schemas": "./schemas",
+          "@scripts": "./scripts",
           "@tests": "./tests"
         }
       }
