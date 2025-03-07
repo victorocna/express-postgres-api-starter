@@ -3,7 +3,7 @@ import express from 'express';
 import 'express-async-errors';
 import fileUpload from 'express-fileupload';
 import helmet from 'helmet';
-import setupCors from './cors/setup-cors';
+import { setupCors } from './cors-setup';
 import { attachPaginate } from './functions';
 import { speedLimiter } from './middleware';
 import router from './router';

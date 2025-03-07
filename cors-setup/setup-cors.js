@@ -1,5 +1,5 @@
-const cors = require('cors');
-const setupOrigin = require('./setup-origin');
+import cors from 'cors';
+import setupOrigin from './setup-origin';
 
 const setupCors = (whitelist, exposedHeaders = []) => {
   return cors({
@@ -9,4 +9,4 @@ const setupCors = (whitelist, exposedHeaders = []) => {
   });
 };
 
-module.exports = setupCors;
+export default setupCors;

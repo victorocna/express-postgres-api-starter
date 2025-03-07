@@ -1,4 +1,4 @@
-const inWhitelist = require('./in-whitelist');
+import inWhitelist from './in-whitelist';
 
 const setupOrigin = ({ origin, callback, whitelist }) => {
   // Allow requests with no origin or from dev environment
@@ -21,4 +21,4 @@ const setupOrigin = ({ origin, callback, whitelist }) => {
   callback(new Error('Not allowed by CORS'));
 };
 
-module.exports = setupOrigin;
+export default setupOrigin;

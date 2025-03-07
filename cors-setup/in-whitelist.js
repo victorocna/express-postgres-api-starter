@@ -13,4 +13,4 @@ const inWhitelist = (origin, whitelist) => {
   }
 };
 
-module.exports = inWhitelist;
+export default inWhitelist;
