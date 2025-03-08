@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import todos from '../resources/todos';
 
 export async function seed(knex) {
