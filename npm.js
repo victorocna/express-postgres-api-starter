@@ -11,6 +11,8 @@ const getScriptProps = () => {
       return `babel . --out-dir ./build ${extraArgs}`;
     case 'dev':
       return `nodemon --exec babel-node --presets=@babel/preset-env -- ./server.js ${extraArgs}`;
+    case 'seed':
+      return `node --require @babel/register ./node_modules/.bin/knex seed:run`;
     case 'start':
       return `node ./build/server.js ${extraArgs}`;
     case 'test':

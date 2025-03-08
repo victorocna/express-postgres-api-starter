@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
-
-import identities from '../resources/identities.js';
+import identities from '../resources/identities';
 
 export async function seed(knex) {
   try {

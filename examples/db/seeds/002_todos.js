@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
-
-import todos from '../resources/todos.js';
+import todos from '../resources/todos';
 
 export async function seed(knex) {
   try {

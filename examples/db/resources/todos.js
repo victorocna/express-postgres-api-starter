@@ -1,4 +1,4 @@
-import db from '../../../db/knex.js';
+import db from '../../../db/knex';
 
 export default async () => {
   const michael = await db('identities').first('id').where('email', 'michael@email.com');
