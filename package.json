@@ -1,6 +1,6 @@
 {
   "name": "express-postres-api-starter",
-  "version": "0.8.0",
+  "version": "1.0.0",
   "description": "Starter for Node Express API projects with Postgres database",
   "main": "server.js",
   "scripts": {
