@@ -1,6 +1,6 @@
-const { removeRefreshTokenCookie } = require('../../functions');
+import { removeRefreshTokenCookie } from '@functions';
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   removeRefreshTokenCookie(res);
 
   return res.json({ message: 'Logout successful' });

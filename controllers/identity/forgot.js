@@ -1,8 +1,8 @@
-const { has } = require('lodash');
-const { knex } = require('../../db');
-const { error, randomHash } = require('../../functions');
+import { knex } from '@db';
+import { error, randomHash } from '@functions';
+import { has } from 'lodash';
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   const { email } = req.body;
   if (!email) {
     throw error(400, 'Missing required params');

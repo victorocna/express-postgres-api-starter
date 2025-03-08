@@ -1,5 +1,1 @@
-const knex = require('./knex');
-
-module.exports = {
-  knex,
-};
+export { default as knex } from './knex';

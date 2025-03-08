@@ -1,4 +1,4 @@
-exports.up = async function (knex) {
+export async function up(knex) {
   await knex.schema.raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
 
   await knex.schema.createTable('identities', (table) => {
@@ -16,8 +16,8 @@ exports.up = async function (knex) {
     table.index('email');
     table.unique('email');
   });
-};
+}
 
-exports.down = async function down(knex) {
+export async function down(knex) {
   await knex.schema.dropTable('identities');
-};
+}

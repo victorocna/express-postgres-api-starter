@@ -1,6 +1,6 @@
 const Knex = require('knex');
 
-module.exports.attachPaginate = function attachPaginate() {
+function attachPaginate() {
   function paginate({
     per_page: perPage = 30,
     page: currentPage = 1,
@@ -46,4 +46,6 @@ module.exports.attachPaginate = function attachPaginate() {
   }
 
   Knex.QueryBuilder.extend('paginate', paginate);
-};
+}
+
+export default attachPaginate;

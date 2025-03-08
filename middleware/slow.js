@@ -1,9 +1,9 @@
-const { coffee } = require('../functions');
+import { coffee } from '@functions';
 
 /**
  * Middleware for testing loading states
  */
-module.exports = async (req, res, next) => {
+const slow = async (req, res, next) => {
   const { trigger } = req.query;
   if (trigger === 'slow') {
     await coffee();
@@ -11,3 +11,5 @@ module.exports = async (req, res, next) => {
 
   next();
 };
+
+export default slow;

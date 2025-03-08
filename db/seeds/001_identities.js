@@ -1,7 +1,6 @@
-/* eslint-disable no-console */
-const identities = require('../resources/identities');
+import identities from '../resources/identities';
 
-exports.seed = async (knex) => {
+export async function seed(knex) {
   try {
     console.log('Planting seeds for identities');
 
@@ -13,4 +12,4 @@ exports.seed = async (knex) => {
     console.warn('Error! Cannot insert identities');
     return console.error(err);
   }
-};
+}

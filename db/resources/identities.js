@@ -1,12 +1,12 @@
-const { hashSync } = require('bcryptjs');
+import bcryptjs from 'bcryptjs';
 
-module.exports = () => {
+export default () => {
   return [
     {
       email: 'michael@email.com',
       name: 'Michael Scott',
       role: 'admin',
-      password: hashSync('supersecretpassword'),
+      password: bcryptjs.hashSync('supersecretpassword'),
       active: true,
       confirmed: true,
     },
@@ -14,7 +14,7 @@ module.exports = () => {
       email: 'jim@email.com',
       name: 'Jim Halpert',
       role: 'client',
-      password: hashSync('supersecretpassword'),
+      password: bcryptjs.hashSync('supersecretpassword'),
       active: false,
       confirmed: true,
     },
@@ -22,7 +22,7 @@ module.exports = () => {
       email: 'pam@email.com',
       name: 'Pam Beesly',
       role: 'client',
-      password: hashSync('supersecretpassword'),
+      password: bcryptjs.hashSync('supersecretpassword'),
       active: true,
       confirmed: false,
     },

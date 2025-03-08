@@ -1,9 +1,9 @@
-const { Router } = require('express');
-const { recaptcha } = require('../middleware');
-const { Identity } = require('../controllers');
+import { Identity } from '@controllers';
+import { recaptcha } from '@middleware';
+import { Router } from 'express';
 
 const router = Router();
-module.exports = router;
+export default router;
 
 router.post('/confirm/:hash', recaptcha, Identity.confirm);
 router.post('/forgot', recaptcha, Identity.forgot);

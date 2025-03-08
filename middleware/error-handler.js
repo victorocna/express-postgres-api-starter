@@ -3,7 +3,7 @@
  * Custom error handler
  * @see https://expressjs.com/en/guide/error-handling.html
  */
-module.exports = (err, req, res, next) => {
+const errorHandler = (err, req, res, next) => {
   if (!(err instanceof Error)) {
     return res.status(500).json({
       name: 'Error',
@@ -15,3 +15,5 @@ module.exports = (err, req, res, next) => {
   const { status = 400, name, message } = err;
   return res.status(status).json({ name, message });
 };
+
+export default errorHandler;

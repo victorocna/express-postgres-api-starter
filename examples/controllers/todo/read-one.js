@@ -1,7 +1,7 @@
-const { knex } = require('../../../db');
-const { error } = require('../../../functions');
+import { knex } from '@db';
+import { error } from '@functions';
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   const { id } = req.params;
   const { me } = req.user;
   if (!id || !me) {
