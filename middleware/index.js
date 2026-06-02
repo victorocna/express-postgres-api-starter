@@ -7,3 +7,4 @@ export { default as speedLimiter } from './speed-limiter';
 export { default as status } from './status';
 export { default as userExists } from './user-exists';
 export { default as userNotExist } from './user-not-exist';
+export { default as validate } from './validate';
