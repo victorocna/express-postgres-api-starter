@@ -4,12 +4,22 @@
     "es2021": true
   },
   "extends": "eslint:recommended",
-  "ignorePatterns": ["**/tests/*.js", "**/*.test.js", "**/test.js"],
+  "ignorePatterns": ["build/**", "**/tests/*.js", "**/*.test.js", "**/test.js"],
   "overrides": [
     {
       "files": ["**/scripts/**/*.js", "**/seeds/**/*.js"],
       "rules": {
         "no-console": "off"
+      }
+    },
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint"],
+      "rules": {
+        "no-undef": "off",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }]
       }
     }
   ],
