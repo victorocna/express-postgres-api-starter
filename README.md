@@ -21,7 +21,7 @@ Optional: Run migrations and seeds
 
 ```bash
 npx knex migrate:latest
-npx knex seed:run
+npm run seed
 ```
 
 Start the local server

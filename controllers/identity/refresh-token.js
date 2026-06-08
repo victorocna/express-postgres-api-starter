@@ -9,7 +9,7 @@ export default async (req, res) => {
 
   let payload;
   try {
-    payload = jwt.verify(req.signedCookies.jwt_refresh_token, process.env.JWT_SECRET);
+    payload = jwt.verify(signedCookie, process.env.JWT_SECRET);
   } catch (err) {
     removeRefreshTokenCookie(res);
     throw error(401, 'Refresh token invalid');
