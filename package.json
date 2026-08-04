@@ -2,6 +2,14 @@
   "name": "express-postres-api-starter",
   "version": "2.0.1",
   "description": "Starter for Node Express API projects with Postgres database",
+  "keywords": [
+    "express",
+    "postgres",
+    "postgresql",
+    "api starter"
+  ],
+  "license": "MIT",
+  "author": "victorocna <victor@chesscoders.com> (https://chesscoders.com)",
   "main": "server.js",
   "scripts": {
     "build": "node npm.js build",
@@ -11,17 +19,8 @@
     "test": "node npm.js test",
     "type-check": "tsc --noEmit"
   },
-  "keywords": [
-    "express",
-    "postgres",
-    "postgresql",
-    "api starter"
-  ],
-  "author": "victorocna <victor@chesscoders.com> (https://chesscoders.com)",
-  "license": "MIT",
-  "engines": {
-    "node": "^22.11.0 || ^20",
-    "npm": "^10.9.0 || ^10"
+  "overrides": {
+    "serialize-javascript": "^7.0.5"
   },
   "dependencies": {
     "axios": "^1.8.1",
@@ -65,7 +64,11 @@
     "prettier": "^2.3.2",
     "typescript": "^6.0.3"
   },
-  "overrides": {
-    "serialize-javascript": "^7.0.5"
+  "engines": {
+    "node": "^22.11.0 || ^20",
+    "npm": "^10.9.0 || ^10"
+  },
+  "allowScripts": {
+    "core-js@3.41.0": true
   }
 }
